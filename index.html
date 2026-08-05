@@ -325,12 +325,16 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // Do NOT clear or remove the inputs here. WhatConverts' auto form tracker
-    // reads the field values off the live DOM after this submit event fires;
-    // destroying the form on submit is what caused every field to arrive blank.
-    // Hide the form instead so the values stay readable in the DOM.
-    form.style.display = 'none';
-    if (success) success.hidden = false;
+    // Do NOT use display:none — it sets offsetParent to null on every field,
+    // which causes WhatConverts' auto-tracker to skip capturing field values.
+    // Give the tracker a window to read the still-visible, filled-in fields
+    // before we visually hide the form off-screen.
+    setTimeout(function () {
+      form.style.position = 'absolute';
+      form.style.left = '-9999px';
+      form.style.visibility = 'hidden';
+      if (success) success.hidden = false;
+    }, 1000);
   });
 }());
 </script>
