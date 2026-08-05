@@ -292,9 +292,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     // Do NOT destroy the inputs. WhatConverts reads field values off the DOM
     // after the submit event fires — hiding the form keeps them readable.
     setTimeout(function () {
-      form.style.display = 'none';
+      form.style.position = 'absolute';
+      form.style.left = '-9999px';
+      form.style.visibility = 'hidden';
       if (success) success.hidden = false;
-    }, 400);
+    }, 1000);
   });
 }());
 </script>

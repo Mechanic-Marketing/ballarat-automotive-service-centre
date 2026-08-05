@@ -599,9 +599,11 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     setTimeout(function () {
-      form.style.display = 'none';
+      form.style.position = 'absolute';
+      form.style.left = '-9999px';
+      form.style.visibility = 'hidden';
       if (success) success.hidden = false;
-    }, 400);
+    }, 1000);
   });
 }());
 
@@ -614,9 +616,11 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     setTimeout(function () {
-      form.style.display = 'none';
+      form.style.position = 'absolute';
+      form.style.left = '-9999px';
+      form.style.visibility = 'hidden';
       if (success) success.hidden = false;
-    }, 400);
+    }, 1000);
   });
 }());
 </script>
